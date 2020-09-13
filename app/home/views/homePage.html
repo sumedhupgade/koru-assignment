@@ -29,7 +29,7 @@
               <a class="nav-link" id="Rxalret-tab" data-toggle="tab" ng-click="activeTab = 'Rxalret'" data-target="#Rxalret" role="tab" aria-controls="Rxalret" aria-selected="false">RX Specific Alerts</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" id="Dxalert-tab" data-toggle="tab" ng-click="activeTab = 'Dxalert'" data-target="#Dxalert" role="tab" aria-controls="Dxalert" aria-selected="false">RX Specific Alerts</a>
+              <a class="nav-link" id="Dxalert-tab" data-toggle="tab" ng-click="activeTab = 'Dxalert'" data-target="#Dxalert" role="tab" aria-controls="Dxalert" aria-selected="false">DX Specific Alerts</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" id="Patientalret-tab" data-toggle="tab" ng-click="activeTab = 'Patientalret'" data-target="#Patientalret" role="tab" aria-controls="Patientalret" aria-selected="false">Patient Specific Alerts</a>
@@ -46,8 +46,8 @@
                     Immunization Alerts
                   </div>
                   <div class="row w-100 align-items-center pl-0 ml-0 fs14">
-                    Find : <input type="text" ng-model="searchText" id="searchbox" ng-change="generateTableData()" class="ml-2 form-control col-4">
-                    <button type="button" class="ml-auto fs14 btn btn-light" ng-click="deleteSelectedRows()" ng-disabled="array_of_ids.length == 0" name="button">Delete</button>
+                    Find : <input type="text" ng-model="searchText" id="searchbox" ng-change="generateTableData()" ng-disabled="(searchText == '' && searchText.length == 0) && tableData.length == 0" class="ml-2 form-control col-4">
+                    <button type="button" class="ml-auto fs14 btn btn-light" ng-click="deleteSelectedRows()" ng-disabled="arrayOfSelectedIds.length == 0" name="button">Delete</button>
                   </div>
                   <div class=" table-container" ng-show="tableData.length > 0">
                     <table class="table mb-0">
@@ -99,7 +99,7 @@
                     </table>
                   </div>
                   <div class=" table-container justify-content-center align-items-center d-flex" ng-if="tableData.length == 0">
-                    No matching record found !
+                    {{searchText.length > 0 ? 'No matching record found !' : 'No data' }}
                   </div>
                 </div>
                 <div class="col-5">
