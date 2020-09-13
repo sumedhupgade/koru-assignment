@@ -46,7 +46,7 @@
                     Immunization Alerts
                   </div>
                   <div class="row w-100 align-items-center pl-0 ml-0 fs14">
-                    Find : <input type="text" ng-model="searchText" id="searchbox" ng-change="generateData()" class="ml-2 form-control col-4">
+                    Find : <input type="text" ng-model="searchText" id="searchbox" ng-change="generateTableData()" class="ml-2 form-control col-4">
                     <button type="button" class="ml-auto fs14 btn btn-light" ng-click="deleteSelectedRows()" ng-disabled="array_of_ids.length == 0" name="button">Delete</button>
                   </div>
                   <div class=" table-container" ng-show="tableData.length > 0">

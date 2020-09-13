@@ -19,7 +19,7 @@ app.controller('homePageController', function($scope, $http, $timeout) {
 
   /* Table functioanlity */
 
-  var parentCheckbox = document.querySelector('input[id="SelectAll"]');
+  let parentCheckbox = document.querySelector('input[id="SelectAll"]');
 
   $scope.selectRow = function(id) {
     let ind = $scope.arrayOfSelectedIds.indexOf(id);
@@ -32,7 +32,7 @@ app.controller('homePageController', function($scope, $http, $timeout) {
   }
 
   $scope.selectUnselectAllRows = function() {
-    for (var i = 0; i < $scope.tableData.length; i++) {
+    for (let i = 0; i < $scope.tableData.length; i++) {
       if (!parentCheckbox.checked && !parentCheckbox.indeterminate) {
         $scope.tableData[i].checked = false;
         $scope.arrayOfSelectedIds = []
@@ -83,7 +83,7 @@ app.controller('homePageController', function($scope, $http, $timeout) {
   }
 
   $scope.deleteSelectedRows = function() {
-    for (var i = 0; i < $scope.arrayOfSelectedIds.length; i++) {
+    for (let i = 0; i < $scope.arrayOfSelectedIds.length; i++) {
       ind = mainData.map((o) => o.id).indexOf($scope.arrayOfSelectedIds[i]);
       mainData.splice(ind, 1);
     }
@@ -100,8 +100,8 @@ app.controller('homePageController', function($scope, $http, $timeout) {
   /*This function updates the status of checkbox in table header when a row is selected for delete*/
 
   function updateParentCheckbox() {
-    var checkedCount = 0;
-    for (var i = 0; i < $scope.tableData.length; i++) {
+    let checkedCount = 0;
+    for (let i = 0; i < $scope.tableData.length; i++) {
       if ($scope.tableData[i].checked) {
         checkedCount++;
       }
@@ -119,11 +119,12 @@ app.controller('homePageController', function($scope, $http, $timeout) {
     }
   }
 
-  // Pagination
+  /* Pagination
 
-  /* $scope.jumpTo is used to jump directly to a page entered in input box & enter is pressed
-    $scope.prevPage is used to naviagte to a previous page if present
-    $scope.nextPage is used to naviagte to a next page if present
+   $scope.jumpTo is used to jump directly to a page entered in input box & enter is pressed
+   $scope.prevPage is used to naviagte to a previous page if present
+   $scope.nextPage is used to naviagte to a next page if present
+
   */
 
   $scope.startFrom = 0;
@@ -147,10 +148,9 @@ app.controller('homePageController', function($scope, $http, $timeout) {
     $scope.startFrom += 15;
   };
 
-  // generate data for table
+  /* generate data for table */
 
   $scope.generateTableData = function() {
-    console.log($scope.searchText);
     if ($scope.searchText.length == 0) {
       $scope.tableData = angular.copy(mainData)
     } else {
@@ -160,7 +160,7 @@ app.controller('homePageController', function($scope, $http, $timeout) {
     updateParentCheckbox()
   }
 
-  // Sort functionality
+  /* Sort functionality */
 
   $scope.propertyName = "name";
   $scope.sortByField = "+name";
@@ -174,11 +174,11 @@ app.controller('homePageController', function($scope, $http, $timeout) {
     $scope.propertyName = sortPropertyName;
   }
 
-  // filter functioanlity
+  /* filter functioanlity */
 
   function searchTextInRecords(query) {
     return function filterFn(row) {
-      var lowerCaseEntity = row.name.toLowerCase();
+      let lowerCaseEntity = row.name.toLowerCase();
       return ((row.name.toLowerCase().includes(query)) || (row.description.toLowerCase().includes(query)) || (row.webReference.toLowerCase().includes(query)));
     };
   }
